@@ -18,7 +18,7 @@ function Loginpage() {
     if (token !== null && token !== undefined) {
       
     } else {
-      toast.info('You are logged out, please login again');
+      // toast.info('You are logged out, please login again');
     }
     // console.log('Login page rendered');
   }, []);

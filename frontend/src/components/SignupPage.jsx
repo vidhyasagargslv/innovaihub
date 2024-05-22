@@ -39,7 +39,7 @@ function SignupPage() {
                 // setToken(response.data.token); 
                 toast.success("Signup successful. Now you can login with your credentials");
                 // Placeholder for navigate function - Redirect to dashboard after successful signup
-                // navigate("/login"); 
+                navigate("/login"); 
             } catch (error) {
                 console.error("Signup error:", error);
                 if (error.response && error.response.data && error.response.data.error) {

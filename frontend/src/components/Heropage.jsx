@@ -1,11 +1,36 @@
-import react from 'react';
+import react,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Loginpage from './Loginpage';
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" />
+import '../styles/Cursor.css'
 
 export default function Heropage() {
+
+  useEffect(() => {
+    const cursorDot = document.querySelector(".cursor-dot");
+    const cursorOutline = document.querySelector(".cursor-outline");
+
+    const mouseMoveHandler = (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+      cursorOutline.style.left = `${posX}px`;
+      cursorOutline.style.top = `${posY}px`;
+    };
+
+    window.addEventListener("mousemove", mouseMoveHandler);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMoveHandler);
+    };
+  }, []);
+
     return (
-      <section className="flex flex-col justify-center items-center max-h-screen w-full">
+      <>
+        <div className="cursor-dot"></div>
+        <div className='cursor-outline'></div>
+      <section className="flex flex-col justify-center items-center max-h-screen w-full cursor-none">
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
@@ -56,6 +81,7 @@ export default function Heropage() {
           </div>
         </div>
       </section>
+      </>
     );
 }
 

@@ -74,7 +74,7 @@ function Navbar() {
       .then((response) => response.json())
       .then((data) => {
         if (data && data.rooms && Object.keys(data.rooms).length > 0) {
-          setSelectedComponent(<Aispace3 />);
+          setSelectedComponent(<Card />);
         } else {
           console.log("No rooms found");
         }
@@ -240,7 +240,7 @@ function Navbar() {
             ))}
           </div>
           <button
-            className="flex gap-6 justify-between px-3.5 py-2 mt-2  text-sm font-medium whitespace-nowrap text-zinc-900 bg-transparent border-none cursor-pointer hover:bg-gray-200 rounded-lg"
+            className="flex gap-6 justify-between px-3.5 py-2 mt-2 w-48  text-sm font-medium whitespace-nowrap text-zinc-900 bg-transparent border-none cursor-pointer hover:bg-gray-200 rounded-lg"
             onClick={logout}
           >
             <img
@@ -249,7 +249,7 @@ function Navbar() {
               alt="Logout icon"
               className="w-6 aspect-square"
             />
-            <div className="flex-auto self-start font-bold">Logout</div>
+            <div className="flex-auto text-start font-bold">Logout</div>
           </button>
         </header>
       </div>
