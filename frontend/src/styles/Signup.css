@@ -1,0 +1,8 @@
+
+.mainbackground{
+    background: url('/signup2.png'), #8c8a8a 0px -48px / 30% 159.556%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: darken;
+}

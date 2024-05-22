@@ -1,0 +1,26 @@
+/* Navbar.css */
+
+.parent {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2px solid orange; */
+  overflow: hidden;
+}
+
+#sidebar {
+  width: 16.5%;
+  height: 80%;
+  margin-top:-7%;
+}
+
+.selectedComponent {
+  width: 100%;
+  /* border: 2px solid white; */
+  height: 100%;
+  /* margin: 10%; */
+}
+
+/* You can add additional CSS for other components here */

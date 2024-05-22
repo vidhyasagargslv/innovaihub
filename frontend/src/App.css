@@ -1,0 +1,33 @@
+
+body{
+  overflow:hidden;
+}
+
+.background{
+width: 100vw;
+height: 100vh;
+flex-shrink: 0;
+background: url(/bg.png), #050505 0px -48px / 100% 159.556% no-repeat;
+background-repeat: none;
+background-position: center;
+background-size: cover;
+backdrop-filter: blur(2px);
+}
+
+
+.logoimage{
+  width: 300px;
+  height: 40px;
+}
+
+
+.textlogo {
+  justify-content: space-between;
+  position: relative;
+}
+
+.logoimage {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
