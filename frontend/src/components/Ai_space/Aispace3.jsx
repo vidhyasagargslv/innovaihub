@@ -93,6 +93,7 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
       if (response.ok) {
         toast.success('Product added to room successfully');
         setShowModal(false); // Close the modal after adding the product
+        setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
       } else {
         toast.error('Failed to add product to room');
       }
