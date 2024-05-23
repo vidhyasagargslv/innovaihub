@@ -26,12 +26,14 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
   ];
 
   useEffect(() => {
+    console.log("object");
     const userId = localStorage.getItem('userId');
     fetch(`http://localhost:5000/api/v1/user/rooms/${userId}`)
       .then(response => response.json())
       .then(data => {
         if (data && data.rooms) {
           setRooms(data.rooms);
+          console.log(data.rooms);
         } else {
           console.log('No rooms found');
         }
@@ -91,9 +93,25 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
       });
 
       if (response.ok) {
+        const userId = localStorage.getItem('userId');
+    fetch(`http://localhost:5000/api/v1/user/rooms/${userId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.rooms) {
+          setRooms(data.rooms);
+          console.log("data added" + data.rooms);
+          
+        } else {
+          console.log('No rooms found');
+        }
+      })
+      .catch(error => {
+        console.log('Fetch error:', error);
+      });
+        // setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
         toast.success('Product added to room successfully');
         setShowModal(false); // Close the modal after adding the product
-        setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
+
       } else {
         toast.error('Failed to add product to room');
       }

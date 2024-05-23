@@ -4,7 +4,7 @@ import  '../App.css'
 
 function First() {
   return (
-    <div className='bg-[#3b3399]'>
+    <div className='bg-[#413c78]'>
       <div className="textlogo flex  items-start pt-7">
         <img src="/innovaihub logo.jpeg" alt="logo" className='sidelogo logo ml-5' />
         <img src="/text_logo-.png" alt="Logo" className='logoimage '/>
