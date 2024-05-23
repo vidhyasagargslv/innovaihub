@@ -236,7 +236,7 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
         </button>
       </div>
 
-    <div id="main3" className=" overflow-scroll flex flex-col ">
+    <div id="main3" className=" overflow-scroll flex flex-col -mb-5">
       
       <br />
       <link
@@ -247,7 +247,7 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
       {Object.entries(rooms).map(([roomName, roomData]) => (
   <div
     key={roomName}
-    className="Frame19 w-[220px] h-[350px]  py-4 pt-6 bg-white rounded-2xl flex-col justify-start items-center gap-1.5 inline-flex overflow-x-auto "
+    className="Frame19 w-[220px] h-[350px]  py-4 pt-7 mt-3  bg-white rounded-2xl flex-col justify-start items-center gap-1.5 inline-flex overflow-x-auto "
   >
     <RoomNameInput
       roomName={roomName}
