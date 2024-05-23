@@ -98,39 +98,48 @@ export default function Favourites() {
   
   const handleLike = async (productId, setLikedProducts, likedProducts, handleSave) => {
     try {
-      const userId = localStorage.getItem('userId');
-      if (!userId) {
-        toast.error('User not logged in');
-        return;
-      }
-  
-      const response = await fetch(`http://localhost:5000/api/v1/user/like/${userId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ productId }),
-      });
-  
-      if (response.ok) {
-        // Remove the product from the liked products list
-        const updatedLikedProducts = likedProducts.filter(id => id !== productId);
-        localStorage.setItem('likedProducts', JSON.stringify(updatedLikedProducts));
-        handleSave(updatedLikedProducts);
-        setLikedProducts(updatedLikedProducts);
-  
-        // Update the state of favouriteProducts by removing the unliked product
-        setFavouriteProducts(prevFavouriteProducts => prevFavouriteProducts.filter(product => product.id !== productId));
-  
-        toast.success('Product unliked');
-      } else {
-        toast.error('Failed to unlike product');
-      }
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            toast.error('User not logged in');
+            return;
+        }
+    
+        const response = await fetch(`http://localhost:5000/api/v1/user/like/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ productId }),
+        });
+    
+        if (response.ok) {
+          let updatedLikedProducts = likedProducts;
+          let message;
+          if (updatedLikedProducts.includes(productId)) {
+              // Product is already liked, so it's being unliked
+              updatedLikedProducts = updatedLikedProducts.filter(id => id !== productId);
+              message = 'added to favourites';
+          } else {
+              // Product is being liked
+              updatedLikedProducts = [...updatedLikedProducts, productId];
+              message = 'Removed from favourites';
+          }
+          if(message){
+            toast.success(message,
+            {autoClose:1000
+            }
+            )
+          }
+          localStorage.setItem('likedProducts', JSON.stringify(updatedLikedProducts));
+          setLikedProducts(updatedLikedProducts);
+    } else {
+            toast.error('Failed to like product');
+        }
     } catch (error) {
-      console.error('Error unliking product:', error);
-      toast.error('An error occurred');
+        console.error('Error liking product:', error);
+        toast.error('An error occurred');
     }
-  };
+};
   
   
   return (
@@ -167,6 +176,10 @@ export default function Favourites() {
                     maxHeight: "160px",
                   }}
                   src={`/images/${item.Title}.jpg`}
+                  onError={(e) => {
+                    e.target.onerror = null; 
+                    e.target.src="/innovaihub logo.jpeg"
+                  }}
                 />
 
                 <div className="flex flex-col mt-5 w-full max-w-[260px]">

@@ -11,6 +11,9 @@ import Aispace3 from "./Ai_space/Aispace3";
 import Aispace2 from "./Ai_space/Aispace2";
 import Aispace1 from "./Ai_space/Aispace1";
 
+
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+
 function MenuItem({
   iconSrc,
   altText,
@@ -207,9 +210,11 @@ function Navbar() {
 
   return (
     <div className="parent flex justify-left ml-6 flex-shrink-1">
+
+      
       <div
         id="sidebar"
-        className="flex flex-col flex-shrink-0 pt-7 pb-12 rounded-2xl shadow-xl backdrop-blur-[7.776000022888184px] bg-indigo-600 bg-opacity-90 leading-[150%] min-w-[225px] min-h-[80vh] "
+        className="flex flex-col flex-shrink-0 pt-7 pb-12 rounded-2xl shadow-xl backdrop-blur-[7.776000022888184px] bg-[#6B4EFF] bg-opacity-90 leading-[150%] min-w-[225px] min-h-[80vh] "
       >
         <header className="flex flex-col justify-center items-start px-2 pt-5 pb-8">
           <div className="flex justify-center items-center pr-8 ml-3 mb-5 gap-3">
@@ -221,7 +226,7 @@ function Navbar() {
                 className="self-start w-10 aspect-square"
               />
             </div>
-            <div className="name text-center font-semibold text-lg text-white tracking-wider capitalize">
+            <div className="name text-center font-[WorkSans] font-semibold text-lg text-[#1C1C21] tracking-wider capitalize">
               {user?.username}
             </div>
           </div>

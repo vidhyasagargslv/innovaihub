@@ -23,10 +23,14 @@ export default function Aispace2({ onAddRoom }) {
         const data = await response.json();
         console.log(data);
         onAddRoom(); // Call the prop function to switch to Aispace3
-        toast.success('Room added')
+        toast.success('Room added',
+        {autoClose:1000
+        })
       } else {
         setError('Failed to add room');
-        toast.error('Failed to add room');
+        toast.error('Failed to add room',
+        {autoClose:1000
+        });
       }
     } catch (error) {
       setError('Failed to add room');

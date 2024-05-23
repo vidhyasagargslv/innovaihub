@@ -53,10 +53,10 @@ const RoomNameInput = ({ roomName, onEdit, onSave, onDelete }) => {
               onKeyDown={handleKeyDown}
               className="text-gray-800 font-medium bg-white w-28"
             />
-            <button onClick={handleSave} className="ml-2">
+            <button onClick={handleSave} className="btn btn-success btn-xs ml-2">
             <CircleCheckBig size={16}/>
             </button>
-            <button onClick={handleCancel} className=" ml-2">
+            <button onClick={handleCancel} className="btn btn-error btn-xs ml-2">
               <XCircle size={16} />
             </button>
           </div>

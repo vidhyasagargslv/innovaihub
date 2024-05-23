@@ -3,7 +3,8 @@ import './Aispace.css';
 import Aispace4 from './Aispace4';
 import { toast } from 'react-toastify';
 import RoomNameInput from './RoomNameInput';
-import { Trash2} from 'lucide-react';
+import {Plus, Trash2} from 'lucide-react';
+
 
 export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
   const [rooms, setRooms] = useState([]);
@@ -109,11 +110,15 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
         console.log('Fetch error:', error);
       });
         // setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
-        toast.success('Product added to room successfully');
+        toast.success('Product added to room successfully',
+        {autoClose:1000
+        });
         setShowModal(false); // Close the modal after adding the product
 
       } else {
-        toast.error('Failed to add product to room');
+        toast.error('Failed to add product to room',
+        {autoClose:1000
+        });
       }
     } catch (error) {
       console.error('Error adding product to room:', error);
@@ -139,15 +144,22 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
           return newEditingRooms;
         });
         setToolsUpdated(!toolsUpdated);
+        toast.success('Room renamed successfully',
+        {autoClose:1000
+        });
       } else {
         // Handle server errors
         console.error('Failed to rename room');
-        toast.error('Failed to rename room. Please try again.');
+        toast.error('Failed to rename room. Please try again.',
+        {autoClose:1000
+        });
       }
     } catch (error) {
       // Handle network errors
       console.error('Error renaming room:', error);
-      toast.error('An error occurred while renaming the room. Please try again later.');
+      toast.error('An error occurred while renaming the room. Please try again later.',
+      {autoClose:1000
+      });
     }
   };
 
@@ -161,9 +173,13 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
   
         if (response.ok) {
           setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
-          toast.success('Room deleted successfully');
+          toast.success('Room deleted successfully',
+          {autoClose:1000
+          });
         } else {
-          toast.error('Failed to delete room');
+          toast.error('Failed to delete room',
+          {autoClose:1000
+          });
         }
       } catch (error) {
         console.error('Error deleting room:', error);
@@ -188,9 +204,13 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
   
         if (response.ok) {
           setToolsUpdated(!toolsUpdated); // Trigger a re-render by toggling the toolsUpdated state
-          toast.success('Product deleted from room successfully');
+          toast.success('Product deleted from room successfully',
+          {autoClose:1000
+          });
         } else {
-          toast.error(data.error || 'Failed to delete product from room');
+          toast.error(data.error || 'Failed to delete product from room',
+          {autoClose:1000
+          });
         }
       } catch (error) {
         console.error('Error deleting product from room:', error);
@@ -208,8 +228,11 @@ export default function Aispace3({ toolsUpdated: toolsUpdatedProp,onAddRoom }) {
   return (
     <div>
         <div className='create-btn' >
-        <button className="btn btn-primary btn-wide" onClick={onAddRoom}>
-            create room
+        <button className="btn btn-primary btn-outline flex justify-center items-center" onClick={onAddRoom}>
+            <div>Create new room</div>
+            <div>
+            <Plus size={16} color="#ffffff" strokeWidth={2} />
+            </div>
         </button>
       </div>
 

@@ -62,8 +62,8 @@ export default function Details() {
 
   return (
     
-    <div className='details parent-container h-screen flex justify-center items-center '>
-        <div className="flex flex-col  pt-3 pb-20 rounded-2xl border border-solid backdrop-blur-[28px] bg-black  bg-opacity-90 border-black border-opacity-0 w-[1056px] h-[93dvh] max-md:h-[100dvh] max-md:items-center">
+    <div className='details parent-container h-screen flex justify-center items-center bg-black overflow-x-auto'>
+        <div className="flex flex-col pt-2 pb-0 rounded-2xl border-2 border-stone-200  border-solid backdrop-blur-[28px] bg-black   bg-opacity-90   w-[1056px] h-[100vh] max-md:h-[100dvh] max-md:items-center">
       
         <div className="closebutton flex justify-center items-center mr-3 self-end w-[30px] max-md:mr-6 cursor-pointer"
         onClick={handleClose}
@@ -76,7 +76,7 @@ export default function Details() {
             {product.Title}
           </h1>
           <Link to ={product.link} target='_blank' >
-          <button className="flex gap-2.5  justify-center py-2 px-5 text-sm tracking-wider cursor-pointer text-white bg-black rounded-xl border border-violet-50 border-solid max-md:pl-4 max-md:px-2">
+          <button className="flex gap-2.5  justify-center py-2 px-5 text-sm tracking-wider cursor-pointer text-white bg-black rounded-xl border border-violet-50 border-solid max-md:pl-4 max-md:px-2 hover:bg-blue-400 hover:text-black">
             <span className="my-auto">Dive In</span>
             <img
               src='/divein.svg'
@@ -152,6 +152,10 @@ export default function Details() {
           </div>
           <img
             src={`/images/${product.Title}.jpg`}
+            onError={(e) => {
+              e.target.onerror = null; 
+              e.target.src="/innovaihub logo.jpeg"
+            }}
             alt="Descriptive alt text for the image"
             className="mt-5 ml-5 max-w-full  aspect-[1.82] mb-11  w-[321px] max-md:mt-10 "
           />

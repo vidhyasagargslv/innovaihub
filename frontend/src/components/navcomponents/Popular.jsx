@@ -133,24 +133,26 @@ export default function Popular() {
         });
     
         if (response.ok) {
-            setLikedProducts(prevLikedProducts => {
-                let updatedLikedProducts;
-                let message;
-                if (prevLikedProducts.includes(productId)) {
-                    // Product is already liked, so it's being unliked
-                    updatedLikedProducts = prevLikedProducts.filter(id => id !== productId);
-                    message = 'Product unliked';
-                } else {
-                    // Product is being liked
-                    updatedLikedProducts = [...prevLikedProducts, productId];
-                    message = 'Product liked';
-                }
-                localStorage.setItem('likedProducts', JSON.stringify(updatedLikedProducts));
-                handleSave(updatedLikedProducts);
-                toast.success(message);
-                return updatedLikedProducts;
-            });
-        } else {
+          let updatedLikedProducts = likedProducts;
+          let message;
+          if (updatedLikedProducts.includes(productId)) {
+              // Product is already liked, so it's being unliked
+              updatedLikedProducts = updatedLikedProducts.filter(id => id !== productId);
+              message = 'removed from favorites';
+          } else {
+              // Product is being liked
+              updatedLikedProducts = [...updatedLikedProducts, productId];
+              message = 'added to favorites';
+          }
+          if(message){
+            toast.success(message,
+            {autoClose:1000
+            }
+            )
+          }
+          localStorage.setItem('likedProducts', JSON.stringify(updatedLikedProducts));
+          setLikedProducts(updatedLikedProducts);
+    } else {
             toast.error('Failed to like product');
         }
     } catch (error) {
@@ -190,6 +192,10 @@ export default function Popular() {
                     maxHeight: "160px",
                   }}
                   src={`/images/${item.Title}.jpg`}
+                  onError={(e) => {
+                    e.target.onerror = null; 
+                    e.target.src="/innovaihub logo.jpeg"
+                  }}
                 />
 
                 <div className="flex flex-col mt-5 w-full max-w-[260px]">

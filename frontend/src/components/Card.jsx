@@ -137,14 +137,17 @@ export default function Card() {
           if (updatedLikedProducts.includes(productId)) {
               // Product is already liked, so it's being unliked
               updatedLikedProducts = updatedLikedProducts.filter(id => id !== productId);
-              message = 'Product unliked';
+              message = 'removed from favorites';
           } else {
               // Product is being liked
               updatedLikedProducts = [...updatedLikedProducts, productId];
-              message = 'Product liked';
+              message = 'added to favorites';
           }
           if(message){
-            toast.success(message)
+            toast.success(message,
+            {autoClose:1000
+            }
+            )
           }
           localStorage.setItem('likedProducts', JSON.stringify(updatedLikedProducts));
           setLikedProducts(updatedLikedProducts);
@@ -167,7 +170,7 @@ export default function Card() {
           <label className="input input-bordered flex items-center gap-2 text-white">
             <input
               type="text"
-              className="search-input"
+              className="search-input text-gray-400"
               placeholder="Search"
               onChange={(e) => setSearchTerm(e.target.value)}
               value={searchTerm}
@@ -182,9 +185,9 @@ export default function Card() {
           <div
             tabIndex={0}
             role="button"
-            className="btn  bg-neutral-content text-black btn-wide active:bg-neutral-content enabled:bg-neutral-content"
+            className="btn  text-gray-400 btn-wide active:bg-neutral-content enabled:bg-neutral-content"
           >
-            Department
+            Category
           </div>
           <ul
             tabIndex={0}
@@ -374,6 +377,10 @@ export default function Card() {
                     maxHeight: "160px",
                   }}
                   src={`/images/${item.Title}.jpg`}
+                  onError={(e) => {
+                    e.target.onerror = null; 
+                    e.target.src="/innovaihub logo.jpeg"
+                  }}
                 />
 
                 <div className="flex flex-col mt-5 w-full max-w-[260px]">
